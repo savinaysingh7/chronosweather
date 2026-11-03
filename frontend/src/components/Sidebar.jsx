@@ -10,7 +10,8 @@ import {
   GraduationCap,
   Activity,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Sparkles
 } from 'lucide-react';
 
 const NAV_ITEMS = [
@@ -20,6 +21,7 @@ const NAV_ITEMS = [
   { id: 'conformal', label: 'Conformal Prediction', icon: Target, badge: '90%' },
   { id: 'cohorts', label: 'Cohort Drift Suite', icon: BarChart3, badge: 'T0-T4' },
   { id: 'roi', label: 'Cost & Retrain ROI', icon: CircleDollarSign, badge: 'ROI' },
+  { id: 'llm', label: 'LLM & GenAI Drift', icon: Sparkles, badge: 'IEEE' },
   { id: 'eli5', label: "Beginner's Guide", icon: GraduationCap, badge: 'ELI5' },
 ];
 

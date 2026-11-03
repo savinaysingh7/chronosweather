@@ -30,6 +30,7 @@ from src.mitigation.cost_model import evaluate_retraining_decision, evaluate_ret
 from src.mitigation.retrainer import execute_retraining_pipeline
 from src.live.controller import start_daemon, stop_daemon, get_daemon_status
 from src.live.storage import LiveStreamStorage
+from src.drift.llm_drift import get_llm_analyzer, COHORT_METADATA
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for modern web frontend
@@ -615,6 +616,47 @@ def simulate_drift():
             },
             'univariate_drift': sim_uni[["feature", "psi", "ks_statistic", "status"]].to_dict('records')
         })
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+# ==========================================
+# LLM & GENERATIVE AI DRIFT ENDPOINTS
+# ==========================================
+
+@app.route('/api/llm/cohorts', methods=['GET'])
+def get_llm_cohorts():
+    """Returns metadata for all available LLM benchmark prompt cohorts"""
+    try:
+        return jsonify({'success': True, 'cohorts': COHORT_METADATA})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+@app.route('/api/llm/analyze/<cohort_key>', methods=['GET'])
+def analyze_llm_cohort(cohort_key):
+    """Analyzes embedding MMD drift, model collapse, and semantic shifts for a prompt cohort"""
+    try:
+        analyzer = get_llm_analyzer()
+        res = analyzer.analyze_cohort(cohort_key)
+        return jsonify(res)
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+@app.route('/api/llm/simulate', methods=['POST'])
+def simulate_llm_drift():
+    """Simulates real-time LLM drift, model collapse, and GEO effects based on user sliders"""
+    try:
+        data = request.get_json(silent=True) or {}
+        synthetic_ratio = float(data.get('synthetic_ratio', 0.5))
+        prompt_shift_factor = float(data.get('prompt_shift_factor', 0.5))
+        geo_bias = float(data.get('geo_bias', 0.3))
+        
+        analyzer = get_llm_analyzer()
+        res = analyzer.simulate_custom_drift(
+            synthetic_ratio=synthetic_ratio,
+            prompt_shift_factor=prompt_shift_factor,
+            geo_bias=geo_bias
+        )
+        return jsonify(res)
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 

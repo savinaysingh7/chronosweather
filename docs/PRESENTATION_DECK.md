@@ -154,35 +154,63 @@
 ---
 
 ## Slide 13: Live Interactive Operations Console Showcase
-* **ChronosGuard Vanguard Command Center (`http://localhost:3000`):**
-  - **🛡️ View 1: Executive Command Center:** Dynamic health indicator, multi-period decay trajectory, and KPI matrix.
-  - **🔴 View 2: Live Stream Ops Center:** Real 24/7 Binance crypto & Open-Meteo live surveillance with SQLite WAL persistence.
-  - **🔍 View 3: SHAP Root-Cause Studio:** Global $\Delta |\text{SHAP}|$ attribution shifts, directional push, and borrower waterfall inspector.
+* **ChronosGuard Vanguard Command Center (`http://localhost:3001` or `3000`):**
+  - **🛡️ View 1: Executive Command Center:** Dynamic health indicator, multi-period decay trajectory, and quick action cards.
+  - **🔴 View 2: Live Stream Ops Center:** Real 24/7 dual stream surveillance (Crypto & Weather Grid) with SQLite WAL persistence.
+  - **🔍 View 3: SHAP Root-Cause Studio:** Global $\Delta |\text{SHAP}|$ attribution shifts, directional push, and waterfall inspector.
   - **🎯 View 4: Split Conformal Prediction Lab:** Distribution-free 90% finite-sample uncertainty sets and empirical coverage breakdown.
   - **📊 View 5: Cohort Drift Detection Suite:** Univariate PSI/KS scorecard, multivariate MMD distance, and adversarial AUC.
-  - **💰 View 6: Cost-Aware Mitigation & Retraining ROI:** Asymmetric loss sliders ($C_{FN}, C_{FP}$) with 60fps client-side calculation and 1-click retraining.
-  - **🎓 View 7: Beginner's Intuition & Sandbox (ELI5):** Jargon-free real-world stories and interactive synthetic drift simulator.
+  - **💰 View 6: Cost-Aware Mitigation & Retraining ROI:** Asymmetric loss sliders ($C_{FN}, C_{FP}$) with 60fps calculation and 1-click retraining.
+  - **✨ View 7: LLM & Generative AI Semantic Drift Studio (IEEE 2025):** High-dimensional embedding MMD, model collapse defense, and GEO simulation.
+  - **🎓 View 8: Beginner's Intuition & Sandbox (ELI5):** Jargon-free real-world stories and interactive synthetic drift simulator.
 
 ---
 
-## Slide 14: Conclusion & Business Value
+## Slide 14: The GenAI Frontier — Semantic Drift & The Model Collapse Paradox (IEEE 2025)
+* **Beyond Tabular Models: Why Traditional Drift Tests Fail on LLMs:**
+  - Modern enterprise pipelines integrate LLMs & RAG where inputs/outputs are free-text embeddings ($\mathbf{e} \in \mathbb{R}^D$).
+  - Tabular KS/PSI tests fail in high-dimensional unstructured semantic spaces.
+* **The Theoretical Breakthrough (Hajmohammed et al., IEEE ICCIAA 2025):**
+  - **The Inverse Law:** $M(t) \propto S(t)$ and $D(t) \propto \frac{1}{M(t)} \propto \frac{1}{S(t)}$.
+  - **The Model Collapse Paradox:** As the web is flooded with synthetic AI text ($S(t) \to 1.0$), vocabulary homogenizes and variance shrinks. Traditional drift tests can paradoxically report **low drift** while model utility collapses.
+  - **Performance Degradation Post-Convergence:** $\Delta P(t) = \alpha \cdot D(t)$ ($t > t_1$).
+* **Real-World Exogenous Shift Drivers:**
+  - **EU AI Act Article 10:** Mandates strict training data governance and bias filtering, shifting token distributions.
+  - **Generative Engine Optimization (GEO):** Content publishers systematically restructuring web text to win AI search engine summary citations.
+
+---
+
+## Slide 15: View #8 Demonstration — LLM Semantic Drift Studio
+* **Core Capabilities (100% Free Local Execution — No OpenAI API Keys):**
+  - **Embedding MMD with RBF Kernel:** Pairwise kernel discrepancy with adaptive median distance bandwidth heuristic.
+  - **Shannon Token Entropy $H(w)$ & Type-Token Ratio (TTR):** Tracking lexical homogenization and repetitive phrasing.
+  - **2D PCA Latent Semantic Map:** Visualizing prompt vector cluster divergence between human reference anchors and current production queries.
+  - **Inverse Law Cross-Over Curve:** Visualizing the mathematical inflection point between $D(t)$ and $M(t)$.
+  - **Live GenAI Drift Sandbox:** Real-time sliders for Synthetic Ratio $S(t)$, Prompt Shift $D(t)$, and GEO bias with live retraining ROI calculation.
+
+---
+
+## Slide 16: Conclusion & Business Value
 * **Summary of Contributions:**
   1. Built an end-to-end multi-tier drift detection framework (Univariate, MMD, Adversarial).
   2. Implemented label-free performance estimation (CBPE) tracking decay within $<0.018$ error without labels.
   3. Integrated Split Conformal Prediction delivering distribution-free $(1 - \alpha)$ guarantees.
   4. Added SHAP explainability attributing root causes and directional push.
   5. Engineered an autonomous 24/7 background streaming daemon with synchronized dual stream mode.
-  6. Tested thoroughly with **34/34 passing unit and integration tests**.
+  6. Extended into the **GenAI frontier** with an IEEE 2025-compliant LLM Semantic Drift Studio ($D(t) \propto 1/M(t)$).
+  7. Tested thoroughly with **39/39 passing unit and integration tests**.
 * **Closing Statement:**
-  > *"ChronosGuard transforms MLOps from reactive firefighting into proactive, autonomous, and economically optimized model reliability management."*
+  > *"ChronosGuard unifies predictive tabular MLOps and generative AI reliability into an autonomous, mathematically rigorous, and economically optimized platform."*
 * **Open for Questions.**
 
 ---
 
-## Slide 15: Appendix & Anticipated Committee Q&A
+## Slide 17: Appendix & Anticipated Committee Q&A
 * **Q1: Why does conformal coverage collapse under Concept Drift ($T_4$)?**
-  - *Answer:* Conformal prediction guarantees valid marginal coverage under the assumption of exchangeability ($P_{train} \equiv P_{prod}$). Concept drift explicitly violates exchangeability, causing empirical coverage to drop to 77.30%. This breakdown provides mathematical proof of decay.
+  - *Answer:* Conformal prediction guarantees valid marginal coverage under exchangeability ($P_{train} \equiv P_{prod}$). Concept drift explicitly violates exchangeability, causing empirical coverage to drop to 77.30%. This breakdown provides mathematical proof of decay.
 * **Q2: Why use MMD over multiple KS-tests with Bonferroni correction?**
   - *Answer:* Bonferroni-corrected univariate tests assume feature independence, losing statistical power when features covary. MMD operates directly in Reproducing Kernel Hilbert Space, capturing higher-order non-linear dependencies.
-* **Q3: How does the sliding-window retraining prevent catastrophic forgetting?**
+* **Q3: How do you detect Model Collapse if observable drift $D(t)$ decreases?**
+  - *Answer:* By simultaneously tracking **Shannon Token Entropy $H(w)$** and **Type-Token Ratio (TTR)** alongside MMD. When MMD is low but token entropy plummets and synthetic saturation $S(t)$ is elevated, our algorithm classifies the state as **Model Collapse Homogenization** rather than nominal stability.
+* **Q4: How does the sliding-window retraining prevent catastrophic forgetting?**
   - *Answer:* The retrainer blends the reference dataset ($T_0$) with the recent drifted window ($T_i$), preserving fundamental boundaries while adapting to shifted distributions.

@@ -7,6 +7,7 @@ import ShapView from './views/ShapView';
 import ConformalView from './views/ConformalView';
 import CohortsView from './views/CohortsView';
 import CostMitigationView from './views/CostMitigationView';
+import LlmDriftView from './views/LlmDriftView';
 import Eli5View from './views/Eli5View';
 import ErrorBoundary from './components/ErrorBoundary';
 import { checkHealth, fetchLiveStatus, analyzeCohort, startDaemon, stopDaemon } from './api';
@@ -35,6 +36,10 @@ const TAB_CONFIG = {
   roi: {
     title: 'Cost-Aware Mitigation & Retraining ROI',
     subtitle: 'Asymmetric loss modeling (Cost of False Negatives vs False Positives) and automated zero-downtime model updates.'
+  },
+  llm: {
+    title: 'LLM & Generative AI Semantic Drift Studio',
+    subtitle: 'Embedding MMD drift, recursive model collapse (D(t) ∝ 1/M(t)), vocabulary entropy, and hallucination risk (IEEE 2025).'
   },
   eli5: {
     title: "Beginner's Intuition & Simulation Lab",
@@ -133,6 +138,8 @@ export default function App() {
         return <CohortsView initialCohort={selectedCohort} />;
       case 'roi':
         return <CostMitigationView analysisData={analysisData} />;
+      case 'llm':
+        return <LlmDriftView />;
       case 'eli5':
         return <Eli5View />;
       default:
